@@ -71,6 +71,7 @@ module objects
             let bullet3= config.Game.BULLET_MANAGER.GetBullet();
             bullet.position = this._bulletSpawn;
             bullet.scaleX= 2;
+            bullet.scaleY= 2;
             bullet.velocity = new Vector2(0, 5);
             if(config.Game.ENEMY_HEALTH<=40){
                 bullet2.position = this._bulletSpawn;
