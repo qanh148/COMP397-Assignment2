@@ -28,7 +28,7 @@ var scenes;
         Start.prototype.Start = function () {
             //instantiate a new Text object
             this._welcomeLabel = new objects.Label("Agent Borris", "80px", "Consolas", "#FFFF00", 320, 180, true);
-            this._instructionLabel = new objects.Label("use mouse and space button to shoot enemy", "20px", "Consolas", "#FF0000", 320, 280, true);
+            this._instructionLabel = new objects.Label("Use A/D to mouse. Dodge enemy bullets", "20px", "Consolas", "#FF0000", 320, 280, true);
             // buttons
             this._startButton = new objects.Button("startButton", 320, 430, true);
             this._ocean = new objects.Ocean();
