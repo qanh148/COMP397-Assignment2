@@ -17,5 +17,6 @@
     "@types/preloadjs": "^0.6.32",
     "@types/soundjs": "^0.6.27",
     "@types/tweenjs": "^1.0.0"
-  }
+  },
+  "repository": "https://github.com/qanh148/COMP397-Assignment2.git"
 }
