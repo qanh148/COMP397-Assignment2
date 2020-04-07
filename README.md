@@ -1,3 +1,3 @@
-# COMP397-W2020-Lesson11C-master
+# Quang Anh Nguyen COMP397 Assignment2
  
-https://qanh148.github.io/COMP397-Big-Project/
+https://qanh148.github.io/COMP397-Assignment2/
