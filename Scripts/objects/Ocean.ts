@@ -19,7 +19,7 @@ module objects
 
         protected _checkBounds(): void 
         {
-            if(this.y >= 0)
+            if(this.y < -640)
             {
                 this.Reset();
             }
@@ -34,9 +34,8 @@ module objects
         public Start(): void 
         {
             this.type = enums.GameObjectType.OCEAN;
-            this._verticalSpeed = 0; // 5 px per frame
+            this._verticalSpeed = -5; // 2 px per frame
             this.velocity = new Vector2(0, this._verticalSpeed);
-            this.Reset();
         }
         
         public Update(): void 

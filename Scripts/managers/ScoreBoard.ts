@@ -6,11 +6,11 @@ module managers
         private _lives : number;
         private _score : number;
         private _highScore : number;
-        private _ammo: number;
+        private _enemyhealth: number;
         private _livesLabel : objects.Label;
         private _scoreLabel : objects.Label;
         private _highScoreLabel : objects.Label;
-        private _ammoLabel : objects.Label;
+        private _enemyHealthLabel : objects.Label;
         // public properties
         
         public get Lives() : number 
@@ -49,16 +49,16 @@ module managers
             this.highScoreLabel.setText("High Score: " + this._highScore);
         }
 
-        public get Ammo() : number 
+        public get EnemyHealth() : number 
         {
-            return this._ammo;
+            return this._enemyhealth;
         }
         
-        public set Ammo(v : number) 
+        public set EnemyHealth(v : number) 
         {
-            this._ammo = v;
-            config.Game.AMMO = this._ammo;
-            this.ammoLabel.text = "Ammo: " + this._ammo;
+            this._enemyhealth = v;
+            config.Game.ENEMY_HEALTH = this._enemyhealth;
+            this.enemyHealthLabel.text = "ENEMY: " + this._enemyhealth;
         }
 
         
@@ -77,9 +77,9 @@ module managers
             return this._highScoreLabel;
         }
 
-        public get ammoLabel() : objects.Label 
+        public get enemyHealthLabel() : objects.Label 
         {
-            return this._ammoLabel;
+            return this._enemyHealthLabel;
         }
 
         // constructor
@@ -94,13 +94,12 @@ module managers
             this._livesLabel = new objects.Label("Lives: 99", "20px", "Consolas", "#FFFF00", 20, 20);
             this._scoreLabel = new objects.Label("Score: 99999", "20px", "Consolas", "#FFFF00", 490, 20);
             this._highScoreLabel = new objects.Label("High Score: 99999", "40px", "Consolas", "#FFFF00", 320, 290);
-            this._ammoLabel = new objects.Label("Ammo: 999", "20px", "Consolas", "#FFFF00", 20, 50);
+            this._enemyHealthLabel = new objects.Label("ENEMY: 999", "20px", "Consolas", "#FFFF00", 20, 50);
             this.Lives = config.Game.LIVES;
             this.Score = config.Game.SCORE;
             this.HighScore = config.Game.HIGH_SCORE;
-            this.Ammo = config.Game.AMMO;
+            this.EnemyHealth = config.Game.ENEMY_HEALTH;
         }
-
         // public methods
     }
 }

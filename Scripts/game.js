@@ -11,7 +11,7 @@ var Game = (function () {
     var textureAtlas;
     var oceanAtlas;
     var assetManifest = [
-        { id: "ocean", src: "./Assets/images/road.png" },
+        { id: "ocean", src: "./Assets/images/space.png" },
         { id: "atlas", src: "./Assets/sprites/atlas.png" },
         { id: "engine", src: "./Assets/audio/engine.ogg" },
         { id: "yay", src: "./Assets/audio/yay.ogg" },
@@ -20,48 +20,36 @@ var Game = (function () {
     var spriteData = {
         "images": {},
         "frames": [
-            [1, 1, 226, 178, 0, 0, 0],
-            [229, 1, 65, 65, 0, 0, 0],
-            [296, 1, 65, 65, 0, 0, 0],
-            [229, 68, 65, 65, 0, 0, 0],
-            [296, 68, 65, 65, 0, 0, 0],
-            [229, 135, 62, 63, 0, 0, 0],
-            [293, 135, 60, 60, 0, 0, 0],
-            [293, 197, 60, 60, 0, 0, 0],
-            [1, 259, 60, 60, 0, 0, 0],
-            [1, 200, 150, 50, 0, 0, 0],
-            [1, 181, 16, 16, 0, 0, 0],
-            [153, 181, 60, 60, 0, 0, 0],
-            [215, 200, 60, 60, 0, 0, 0],
-            [63, 252, 150, 50, 0, 0, 0],
-            [215, 262, 150, 50, 0, 0, 0],
-            [63, 304, 150, 50, 0, 0, 0],
-            [215, 314, 150, 50, 0, 0, 0]
+            [1, 1, 422, 372, 0, 0, 0],
+            [1, 375, 226, 178, 0, 0, 0],
+            [425, 1, 65, 65, 0, 0, 0],
+            [492, 1, 60, 61, 0, 0, 0],
+            [492, 64, 16, 16, 0, 0, 0],
+            [425, 68, 62, 63, 0, 0, 0],
+            [229, 375, 150, 50, 0, 0, 0],
+            [381, 375, 150, 50, 0, 0, 0],
+            [229, 427, 150, 50, 0, 0, 0],
+            [381, 427, 150, 50, 0, 0, 0],
+            [229, 479, 150, 50, 0, 0, 0]
         ],
         "animations": {
-            "cloud": { "frames": [0] },
-            "placeholder": { "frames": [1] },
-            "plane1": { "frames": [2] },
-            "plane2": { "frames": [3] },
-            "plane3": { "frames": [4] },
+            "enemyplane": { "frames": [0] },
+            "cloud": { "frames": [1] },
+            "placeholder": { "frames": [2] },
+            "playerplane": { "frames": [3] },
+            "bullet": { "frames": [4] },
             "island": { "frames": [5] },
-            "agent": { "frames": [6] },
-            "bullet1": { "frames": [7] },
-            "bullet2": { "frames": [8] },
-            "backButton": { "frames": [9] },
-            "bullet": { "frames": [10] },
-            "bullet3": { "frames": [11] },
-            "enemy": { "frames": [12] },
-            "button": { "frames": [13] },
-            "nextButton": { "frames": [14] },
-            "restartButton": { "frames": [15] },
-            "startButton": { "frames": [16] }
+            "backButton": { "frames": [6] },
+            "button": { "frames": [7] },
+            "nextButton": { "frames": [8] },
+            "restartButton": { "frames": [9] },
+            "startButton": { "frames": [10] }
         }
     };
     var oceanData = {
         "images": {},
         "frames": [
-            [0, 0, 640, 1200, 0, 0, 0],
+            [0, 0, 1400, 1400, 0, 0, 0],
         ],
         "animations": {
             "ocean": { "frames": [0] },

@@ -29,7 +29,6 @@ var scenes;
         Play.prototype.Start = function () {
             this._ocean = new objects.Ocean();
             this._agent = new objects.Agent();
-            this._supply = new objects.Supply();
             // create the cloud array
             this._enemy1 = new Array(); // empty container
             // instantiating CLOUD_NUM clouds
@@ -50,16 +49,6 @@ var scenes;
             this._ocean.Update();
             this._agent.Update();
             this._bulletManager.Update();
-            this._supply.Update();
-            if (managers.Collision.squaredRadiusCheck(this._agent, this._supply)) {
-                console.log("Collision with Supply!");
-                var yaySound = createjs.Sound.play("yay");
-                yaySound.volume = 0.2;
-                config.Game.SCORE_BOARD.Ammo += 10;
-                if (config.Game.SCORE > config.Game.HIGH_SCORE) {
-                    config.Game.HIGH_SCORE = config.Game.SCORE;
-                }
-            }
             this._enemy1.forEach(function (cloud) {
                 cloud.Update();
                 if (managers.Collision.squaredRadiusCheck(_this._agent, cloud)) {
@@ -79,16 +68,25 @@ var scenes;
                 this._enemy1.forEach(function (cloud) {
                     if (managers.Collision.squaredRadiusCheck(cloud, bullet)) {
                         console.log("Bullet Collision with Cloud!");
-                        config.Game.SCORE_BOARD.Score += 20;
+                        config.Game.SCORE_BOARD.EnemyHealth -= 1;
+                        if (config.Game.SCORE_BOARD.EnemyHealth < 1) {
+                            config.Game.SCENE = scenes.State.END;
+                        }
                         bullet.Reset();
-                        cloud.Reset();
                     }
                 });
+                if (managers.Collision.squaredRadiusCheck(this._agent, bullet)) {
+                    console.log("player Collision with bullet!");
+                    config.Game.SCORE_BOARD.Lives -= 1;
+                    if (config.Game.SCORE_BOARD.Lives < 1) {
+                        config.Game.SCENE = scenes.State.END;
+                    }
+                    bullet.Reset();
+                }
             }
         };
         Play.prototype.Main = function () {
             this.addChild(this._ocean);
-            this.addChild(this._supply);
             this.addChild(this._agent);
             this._bulletManager.AddBulletsToScene(this);
             for (var _i = 0, _a = this._enemy1; _i < _a.length; _i++) {
@@ -97,7 +95,7 @@ var scenes;
             }
             this.addChild(this._scoreBoard.LivesLabel);
             this.addChild(this._scoreBoard.ScoreLabel);
-            this.addChild(this._scoreBoard.ammoLabel);
+            this.addChild(this._scoreBoard.enemyHealthLabel);
         };
         Play.prototype.Clean = function () {
             this._agent.engineSound.stop();

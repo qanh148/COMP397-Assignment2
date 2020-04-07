@@ -5,13 +5,13 @@ module objects
         // PRIVATE INSTANCE MEMBERS
         private _verticalSpeed?:number;
         private _horizontalSpeed?:number;
-        private _frame : number=0;
+        private _bulletSpawn: objects.Vector2;
         // PUBLIC PROPERTIES
 
         // CONSTRUCTOR
         constructor()
         {
-            super(config.Game.TEXTURE_ATLAS, "enemy", new Vector2(), true);
+            super(config.Game.TEXTURE_ATLAS, "enemyplane", new Vector2(), true);
 
             this.Start();
         }
@@ -24,19 +24,13 @@ module objects
             {
                 this.Reset();
             }
-            if(this.position.x <= this.halfWidth)
-            {
-                this._horizontalSpeed = util.Mathf.RandomRange(0, 3);
-            }
-            if(this.position.x >= config.Game.SCREEN_WIDTH - this.halfWidth)
-            {
-                this._horizontalSpeed = util.Mathf.RandomRange(-3, 0);
-            }
+            
         }       
         
         private _move():void
         {
             this.position = Vector2.add(this.position, this.velocity);
+            this._bulletSpawn = new Vector2(this.position.x, this.position.y+200);
         }
         
         // PUBLIC METHODS
@@ -44,7 +38,6 @@ module objects
         {
             this.type = enums.GameObjectType.ENEMY1;
             this.alpha = 1; // 100% transparent
-            this.rotation= 180
             this.Reset();
         }
         
@@ -52,9 +45,11 @@ module objects
         {
             this._move();
             this._checkBounds();
-            this._frame+=1;
-            if(this._frame%40==0){
-                this._horizontalSpeed = util.Mathf.RandomRange(-3, 3);
+            if(createjs.Ticker.getTicks() % 160==0){
+                this._horizontalSpeed = (this._horizontalSpeed==1)?-1:1
+            }
+            if (createjs.Ticker.getTicks() % 43==0) {
+                this.FireBullets();
             }
             
             this.velocity = new Vector2(this._horizontalSpeed, this._verticalSpeed);
@@ -62,14 +57,42 @@ module objects
         
         public Reset(): void 
         {
-            this._verticalSpeed = util.Mathf.RandomRange(3, 5);
-            this._horizontalSpeed = util.Mathf.RandomRange(-2, 2);
+            this._verticalSpeed = 0;
+            this._horizontalSpeed = (this._horizontalSpeed==1)?-1:1
             this.velocity = new Vector2(this._horizontalSpeed, this._verticalSpeed);
-            let randomX = util.Mathf.RandomRange(this.halfWidth, config.Game.SCREEN_WIDTH - this.halfWidth);
-            let randomY = util.Mathf.RandomRange(-this.height * 3, -this.height);
+            let randomX = 285;
+            let randomY = -60;
             this.position = new Vector2(randomX, randomY);
         }
 
-        
+        public FireBullets(): void {
+            let bullet = config.Game.BULLET_MANAGER.GetBullet();
+            let bullet2= config.Game.BULLET_MANAGER.GetBullet();
+            let bullet3= config.Game.BULLET_MANAGER.GetBullet();
+            bullet.position = this._bulletSpawn;
+            bullet.scaleX= 2;
+            bullet.velocity = new Vector2(0, 5);
+            if(config.Game.ENEMY_HEALTH<=40){
+                bullet2.position = this._bulletSpawn;
+                bullet2.scaleX= 2;
+                bullet2.scaleY=2;
+                bullet2.velocity = new Vector2(2,5);   
+
+                bullet3.position = this._bulletSpawn;
+                bullet3.scaleX= 2;
+                bullet3.scaleY=2;
+                bullet3.velocity = new Vector2(-2,5);     
+            }
+            if(config.Game.ENEMY_HEALTH<=25)
+            {
+                bullet.scaleX= 3;
+                bullet.scaleY=3;
+                bullet2.scaleX= 3;
+                bullet2.scaleY=3;
+                bullet3.scaleX= 3;
+                bullet3.scaleY=3;
+            }
+               
+        }
     }
 }

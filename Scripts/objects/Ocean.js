@@ -25,7 +25,7 @@ var objects;
         }
         // PRIVATE METHODS
         Ocean.prototype._checkBounds = function () {
-            if (this.y >= 0) {
+            if (this.y < -640) {
                 this.Reset();
             }
         };
@@ -35,9 +35,8 @@ var objects;
         // PUBLIC METHODS
         Ocean.prototype.Start = function () {
             this.type = enums.GameObjectType.OCEAN;
-            this._verticalSpeed = 0; // 5 px per frame
+            this._verticalSpeed = -5; // 2 px per frame
             this.velocity = new objects.Vector2(0, this._verticalSpeed);
-            this.Reset();
         };
         Ocean.prototype.Update = function () {
             this._move();

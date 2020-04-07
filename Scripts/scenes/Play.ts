@@ -3,7 +3,6 @@ module scenes {
         // PRIVATE INSTANCE MEMBERS
         private _ocean?: objects.Ocean;
         private _agent?: objects.Agent;
-        private _supply?: objects.Supply;
         private _bullet?: objects.Bullet;
 
         private _enemy1: Array<objects.Enemy1>;
@@ -30,7 +29,6 @@ module scenes {
 
             this._ocean = new objects.Ocean();
             this._agent = new objects.Agent();
-            this._supply = new objects.Supply();
 
             // create the cloud array
             this._enemy1 = new Array<objects.Enemy1>(); // empty container
@@ -60,19 +58,6 @@ module scenes {
 
             this._bulletManager.Update();
 
-            this._supply.Update();
-
-            if (managers.Collision.squaredRadiusCheck(this._agent, this._supply)) {
-                console.log("Collision with Supply!");
-                let yaySound = createjs.Sound.play("yay");
-                yaySound.volume = 0.2;
-                config.Game.SCORE_BOARD.Ammo += 10;
-
-                if (config.Game.SCORE > config.Game.HIGH_SCORE) {
-                    config.Game.HIGH_SCORE = config.Game.SCORE;
-                }
-            }
-
 
             this._enemy1.forEach(cloud => {
                 cloud.Update();
@@ -93,19 +78,27 @@ module scenes {
                 this._enemy1.forEach(cloud => {
                     if(managers.Collision.squaredRadiusCheck(cloud, bullet)){
                         console.log("Bullet Collision with Cloud!");
-                        config.Game.SCORE_BOARD.Score += 20;
+                        config.Game.SCORE_BOARD.EnemyHealth -= 1;
+                        if(config.Game.SCORE_BOARD.EnemyHealth<1){
+                            config.Game.SCENE = scenes.State.END;
+                        }
                         bullet.Reset();
-                        cloud.Reset();
                     }
                 });
+                if(managers.Collision.squaredRadiusCheck(this._agent, bullet)){
+                    console.log("player Collision with bullet!");
+                    config.Game.SCORE_BOARD.Lives -= 1;
+                    if(config.Game.SCORE_BOARD.Lives<1){
+                        config.Game.SCENE = scenes.State.END;
+                    }
+                    bullet.Reset();
+                }
             }
-
         }
 
         public Main(): void {
             this.addChild(this._ocean);
 
-            this.addChild(this._supply);
 
             this.addChild(this._agent);
 
@@ -119,7 +112,7 @@ module scenes {
 
             this.addChild(this._scoreBoard.ScoreLabel);
 
-            this.addChild(this._scoreBoard.ammoLabel);
+            this.addChild(this._scoreBoard.enemyHealthLabel);
         }
 
         public Clean(): void {

@@ -44,18 +44,7 @@ var objects;
             this._checkBounds();
         };
         Supply.prototype.Reset = function () {
-            var randomX = util.Mathf.RandomRange(this.halfWidth, config.Game.SCREEN_WIDTH - this.halfWidth);
-            var randomSupply = Math.floor(util.Mathf.RandomRange(1, 10));
-            console.log(randomSupply);
-            if (randomSupply < 6) {
-                this.gotoAndPlay("bullet1");
-            }
-            else if (randomSupply < 9) {
-                this.gotoAndPlay("bullet2");
-            }
-            else if (randomSupply < 11) {
-                this.gotoAndPlay("bullet3");
-            }
+            var randomX = util.Mathf.RandomRange(this.halfWidth + 80, config.Game.SCREEN_WIDTH - this.halfWidth - 80);
             this.position = new objects.Vector2(randomX, -this.height);
         };
         return Supply;

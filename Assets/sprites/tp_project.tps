@@ -181,25 +181,6 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../images/agent.png</key>
-            <key type="filename">../images/bullet1.png</key>
-            <key type="filename">../images/bullet2.png</key>
-            <key type="filename">../images/bullet3.png</key>
-            <key type="filename">../images/enemy.png</key>
-            <struct type="IndividualSpriteSettings">
-                <key>pivotPoint</key>
-                <point_f>0.5,0.5</point_f>
-                <key>spriteScale</key>
-                <double>1</double>
-                <key>scale9Enabled</key>
-                <false/>
-                <key>scale9Borders</key>
-                <rect>15,15,30,30</rect>
-                <key>scale9Paddings</key>
-                <rect>15,15,30,30</rect>
-                <key>scale9FromFile</key>
-                <false/>
-            </struct>
             <key type="filename">../images/backButton.png</key>
             <key type="filename">../images/button.png</key>
             <key type="filename">../images/nextButton.png</key>
@@ -249,6 +230,21 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../images/enemyplane.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>106,93,211,186</rect>
+                <key>scale9Paddings</key>
+                <rect>106,93,211,186</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
             <key type="filename">../images/island.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
@@ -265,9 +261,6 @@
                 <false/>
             </struct>
             <key type="filename">../images/placeholder.png</key>
-            <key type="filename">../images/plane1.png</key>
-            <key type="filename">../images/plane2.png</key>
-            <key type="filename">../images/plane3.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -282,26 +275,35 @@
                 <key>scale9FromFile</key>
                 <false/>
             </struct>
+            <key type="filename">../images/playerplane.png</key>
+            <struct type="IndividualSpriteSettings">
+                <key>pivotPoint</key>
+                <point_f>0.5,0.5</point_f>
+                <key>spriteScale</key>
+                <double>1</double>
+                <key>scale9Enabled</key>
+                <false/>
+                <key>scale9Borders</key>
+                <rect>15,15,30,31</rect>
+                <key>scale9Paddings</key>
+                <rect>15,15,30,31</rect>
+                <key>scale9FromFile</key>
+                <false/>
+            </struct>
         </map>
         <key>fileList</key>
         <array>
-            <filename>../images/agent.png</filename>
             <filename>../images/backButton.png</filename>
             <filename>../images/bullet.png</filename>
             <filename>../images/button.png</filename>
             <filename>../images/cloud.png</filename>
-            <filename>../images/enemy.png</filename>
             <filename>../images/island.png</filename>
             <filename>../images/nextButton.png</filename>
             <filename>../images/placeholder.png</filename>
-            <filename>../images/plane1.png</filename>
-            <filename>../images/plane2.png</filename>
-            <filename>../images/plane3.png</filename>
             <filename>../images/restartButton.png</filename>
             <filename>../images/startButton.png</filename>
-            <filename>../images/bullet1.png</filename>
-            <filename>../images/bullet2.png</filename>
-            <filename>../images/bullet3.png</filename>
+            <filename>../images/playerplane.png</filename>
+            <filename>../images/enemyplane.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

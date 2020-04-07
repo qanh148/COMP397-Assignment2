@@ -27,14 +27,18 @@ module scenes
         public Start(): void 
         {
              //instantiate a new Text object
-            this._gameOverLabel = new objects.Label("Game Over", "80px", "Consolas", "#FFFF00", 320, 180, true);
+             if(config.Game.SCORE_BOARD.Lives<1){
+                this._gameOverLabel = new objects.Label("Game Over", "80px", "Consolas", "#FFFF00", 320, 180, true);
+             }
+           else{
+            this._gameOverLabel = new objects.Label("You Win!", "80px", "Consolas", "#FFFF00", 320, 180, true);
+           }
             // buttons
              this._restartButton = new objects.Button("restartButton", 320, 430, true);
             
              this._ocean = new objects.Ocean();
 
              this._scoreBoard  = new managers.ScoreBoard();
-             this._scoreBoard.HighScore = config.Game.HIGH_SCORE;
              this.Main();
         }        
         
@@ -54,12 +58,11 @@ module scenes
 
             this._restartButton.on("click", ()=>{
                 config.Game.LIVES = 5;
-                config.Game.SCORE = 0;
-
+                config.Game.ENEMY_HEALTH= 50;
+                
                 config.Game.SCENE = scenes.State.PLAY;
             });
 
-            this.addChild(this._scoreBoard.highScoreLabel);
 
         }
 
